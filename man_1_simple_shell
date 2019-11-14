@@ -1,0 +1,16 @@
+.TH HSH 1 "2019-11-28" "BSD" "General Commands Manual"
+.SH NAME
+.B hsh	
+-- command interpreter (shell)
+.SH SYNOPSIS
+     sh	[-/+abCEefhIimnPpTuVvx]	[-/+o longname]	[script	[arg ...]]
+     sh	[-/+abCEefhIimnPpTuVvx]	[-/+o longname]	-c string [name	[arg ...]]
+     sh	[-/+abCEefhIimnPpTuVvx]	[-/+o longname]	-s [arg	...]
+.SH DESCRIPTION
+     The sh utility is the standard command interpreter	for the	system.	 The
+     current version of	sh is close to the IEEE	Std 1003.1 ("POSIX.1") speci-
+     fication for the shell.  It only supports features	designated by POSIX,
+     plus a few	Berkeley extensions.  This man page is not intended to be a
+     tutorial nor a complete specification of the shell.
+.SH AUTHORS
+This version of sh was originally written by Alejandro Arbelaez Giraldo and Juan Sebastian Ocampo Hoyos from Holberton School.
