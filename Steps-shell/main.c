@@ -44,6 +44,13 @@ int main(int argc, char **argv)
 		printf("%s", buffer);
 		temp_split = split_str(buffer, " ");
 	}
+
+	i = 0;
+        while (temp_split[i])
+        {
+        free(temp_split[i]);
+        i++;
+	}
 	free(buffer);
 	free(temp_split);
     return (0);

@@ -1,4 +1,18 @@
 #include "shelltest.h"
+/**
+ *_tokenlen - Function to copy
+ *@str: value of the string
+ *Return: always 0
+*/
+size_t tokenlen(const char *str)
+{
+size_t len;
+
+for (len = 0; str[len] != '\0'; len++)
+	{}
+return (len);
+}
+
 
 /**
  *_strcpy - Function to copy
@@ -38,7 +52,7 @@ char **split_str(char *str, const char *delim)
 		if (str[len] == '\n')
 			str[len] = '\0';
 	}
-	
+
 	tempStr = _strcpy(tempStr, str);
 
 	printf("str new is: %s", tempStr);
@@ -60,6 +74,11 @@ char **split_str(char *str, const char *delim)
 	token = strtok(tempStr, delim);
 	while (token)
 	{
+		token_list[i] = malloc(sizeof(char) * tokenlen(token));
+		if (token_list[i] == NULL)
+			{
+			return (NULL);
+			}
 		token_list[i] = token;
 		i++;
 		token = strtok(NULL, delim);
