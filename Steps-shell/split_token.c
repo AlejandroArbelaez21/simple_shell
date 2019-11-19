@@ -37,6 +37,8 @@ char **split_str(char *str, const char *delim)
 		while (str[len] != delim[0] && str[len])
 			len++;
 		wordCount++;
+		if (str[len] == '\n')
+			str[len] = '\0';
 	}
 	printf("list is %s\n", token);
 
