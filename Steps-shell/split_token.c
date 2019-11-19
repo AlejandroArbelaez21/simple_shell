@@ -24,45 +24,46 @@ char *_strcpy(char *dest, char *src)
 */
 char **split_str(char *str, const char *delim)
 {
-	int len = 0, wordCount = 0, i =0;
+	int len = 0, numLetters = 0, i =0;
 	char **token_list = NULL;
-	char *token = strtok(str, delim);
-	
-	/*Words count*/
-	while (str[len])
+	char *tempStr = NULL;
+
+	char *token = NULL;
+
+	tempStr = malloc(sizeof(str));
+	if (tempStr == NULL)
 	{
-		printf("list is %s\n", token);
-		while (str[len] == delim[0] && str[len])
-			len++;
-		while (str[len] != delim[0] && str[len])
-			len++;
-		wordCount++;
+		perror ("Error");
+		free(tempStr);
 		if (str[len] == '\n')
 			str[len] = '\0';
 	}
-	printf("list is %s\n", token);
+	
+	tempStr = _strcpy(tempStr, str);
 
-
-	token_list = malloc(sizeof(char *) * wordCount);
-	if (wordCount == 0)
+	printf("str new is: %s", tempStr);
+	/*letters count*/
+	while (str[len] != '\0')
 	{
-		perror ("Error");
-		free(token_list);
+		if (str[len] != delim[0])
+			numLetters++;
+		len++;
 	}
+
+	token_list = malloc((sizeof(char) * numLetters + 1));
+	printf("size of ** is %lu\n", (sizeof(char) * numLetters + 1));
 	if (token_list == NULL)
 	{
 		perror ("Error");
 		free(token_list);
 	}
-
+	token = strtok(tempStr, delim);
 	while (token)
 	{
 		token_list[i] = token;
-		printf("list 1 %s\n", token);
 		i++;
 		token = strtok(NULL, delim);
-		printf("list2 %s\n", token);
 	}
-	free(token);
+	free(tempStr);
 	return (token_list);
 }
