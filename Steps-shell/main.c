@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "shelltest.h"
 
 /**
  * main - PID
@@ -13,7 +13,8 @@ int main(int argc, char **argv)
     pid_t my_pid, my_ppid;
 	size_t buff_size = 10;
 	ssize_t printer = 1;
-	char **temp_split = NULL;
+	char **temp_split;
+
 	char *buffer = (char *)malloc(buff_size);
 
 	if (buffer == NULL)
@@ -42,10 +43,7 @@ int main(int argc, char **argv)
 		printer = getline(&buffer, &buff_size, stdin);
 		printf("%s", buffer);
 		temp_split = split_str(buffer, " ");
-		
 	}
-	free(buffer);
-
     return (0);
 }
 

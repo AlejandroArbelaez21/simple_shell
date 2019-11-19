@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "shelltest.h"
 
 /**
  *_strcpy - Function to copy
@@ -31,13 +31,12 @@ char **split_str(char *str, const char *delim)
 	/*Words count*/
 	while (str[len])
 	{
-		while (str[len] == ' ')
+		printf("list is %s\n", token);
+		while (str[len] == delim[0] && str[len])
 			len++;
-		while (str[len] != ' ')
+		while (str[len] != delim[0] && str[len])
 			len++;
 		wordCount++;
-		if (str[len] == '\n')
-			break;
 	}
 	printf("list is %s\n", token);
 
@@ -54,13 +53,13 @@ char **split_str(char *str, const char *delim)
 		free(token_list);
 	}
 
-
-	while (token_list[i])
+	while (token)
 	{
 		token_list[i] = token;
+		printf("list 1 %s\n", token);
 		i++;
 		token = strtok(NULL, delim);
-		printf("list is %s\n", token);
+		printf("list2 %s\n", token);
 	}
 	free(token);
 	return (token_list);
