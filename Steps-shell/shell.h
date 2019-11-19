@@ -5,7 +5,9 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <string.h>
-char *split_str(char *str, const char *delim);
+char **split_str(char *str, const char *delim);
+
+char *_strcpy(char *dest, char *src);
 
 
 #endif
