@@ -24,6 +24,6 @@
 			waitpid(pid, &status, WUNTRACED);
 		while (WIFEXITED(status) == 0 && WIFSIGNALED(status) == 0);
 	}
-	return (1);
+	return (EXIT_SUCCESS);
  }
 
