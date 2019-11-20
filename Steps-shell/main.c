@@ -6,10 +6,10 @@
  */
 int main(void)
 {
-	int i, k = 0;
-    pid_t my_pid, my_ppid;
+	int i;
 	size_t buff_size = 10;
 	ssize_t printer = 1;
+	pid_t pid;
 	char **temp_split = NULL;
 	char *buffer = malloc(buff_size);
 
@@ -19,13 +19,6 @@ int main(void)
 		free(buffer);
 		exit(98);
 	}
-    my_pid = getpid();
-	my_ppid = getppid();
-    printf("%u\n", my_pid);
-	printf("%u\n", my_ppid);
-
-	printf("This is the prompt\n");
-
 	while (printer > 0)
 	{
 		printf("$ ");
@@ -34,16 +27,8 @@ int main(void)
 			break;
 		printf("%s", buffer);
 		temp_split = split_str(buffer, " ");
-		while(temp_split[k])
-			{
-			printf("token %i es %s", k, temp_split[k]);
-			k++;
-			}
-			printf("'hola'");
-		if (execve(temp_split[0], temp_split, NULL) == -1)
-		{
-			perror("Error:");
-		}
+		
+		pid = _fork(temp_split);
 		i = 0;
 		while (temp_split[i])
 			i++;
@@ -54,7 +39,6 @@ int main(void)
 		}
 		free(temp_split);
 	}
-
 	free(buffer);
     return (0);
 }

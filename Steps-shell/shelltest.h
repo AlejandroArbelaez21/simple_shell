@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <string.h>
 char **split_str(char *str, const char *delim);
+ int _fork(char **temp_split);
 
 char *_strcpy(char *dest, char *src);
 
