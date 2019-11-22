@@ -1,10 +1,10 @@
 #include "shell.h"
 /**
- *tokenlen - Function to copy
+ *_strlen - Function to copy
  *@str: value of the string
  *Return: always 0
  */
-size_t tokenlen(const char *str)
+size_t _strlen(const char *str)
 {
 size_t len;
 
@@ -37,7 +37,7 @@ char *_strcpy(char *dest, char *src)
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-char *str_concat(char *s1, char *s2)
+char *_strcat(char *s1, char *s2)
 {
 unsigned int a, b, x, y;
 char *c;

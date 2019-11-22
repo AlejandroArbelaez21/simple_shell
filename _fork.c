@@ -23,7 +23,7 @@ int status;
 		{
 			perror("Error");
 		}
-		free(temp_split);
+
 	}
 	else
 	{

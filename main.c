@@ -9,13 +9,14 @@
  */
 int main(int argc, char **argv, char **envp)
 {
-int i, flag, tok_indx, token_len, path_len;
+
+int i, flag = 0, tok_indx, token_len, path_len;
 size_t buff_size = 10;
 ssize_t printer = 1;
-pid_t pid;
-struct stat cmmd;
+struct stat cmmd_find;
 char **temp_split = NULL, **catP, *env;
-char *buffer = malloc(buff_size), *env;
+char *buffer = malloc(buff_size);
+
 (void)argc, (void)argv;
 
 	if (buffer == NULL)
@@ -33,14 +34,14 @@ char *buffer = malloc(buff_size), *env;
 			break;
 		write(STDOUT_FILENO, "$ ", 2);
 		temp_split = split_str(buffer, " ");
-		if (stat(temp_split[0], &cmmd) == 0)
+		if (stat(temp_split[0], &cmmd_find) == 0)
 		{
 			flag = 1;
 		}
 		else
 		{
-			catP = split_string(env, ":");
-			path_len = _strlen (temp_split[0]);
+			catP = split_str(env, ":");
+			path_len = _strlen(temp_split[0]);
 			tok_indx = 0;
 			while (catP[tok_indx])
 			{
@@ -48,7 +49,7 @@ char *buffer = malloc(buff_size), *env;
 				catP[tok_indx] = realloc(catP[tok_indx], sizeof(char) * (token_len + path_len));
 				_strcat(catP[tok_indx], "/");
 				_strcat(catP[tok_indx], temp_split[0]);
-				if (stat(catP[tok_indx], &cmmd) == 0)
+				if (stat(catP[tok_indx], &cmmd_find) == 0)
 				{
 					temp_split[0] = realloc(temp_split[0], sizeof(char) * (token_len + path_len));
 					strcpy(temp_split[0], catP[tok_indx]);
@@ -58,7 +59,9 @@ char *buffer = malloc(buff_size), *env;
 				tok_indx++;
 			}
 		}
-		pid = _fork(temp_split);
+		if (flag == 1)
+				_fork(temp_split);
+		_fork(temp_split);
 		if (printer > 1)
 			write(STDOUT_FILENO, buffer, printer);
 		i = 0;

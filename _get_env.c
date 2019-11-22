@@ -8,7 +8,7 @@
 
 char *_get_env(char **envp)
 {
-	int i;
+	int i = 0;
 	char *env;
 
 	while (envp[i])

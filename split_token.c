@@ -28,7 +28,6 @@ char **split_str(char *str, const char *delim)
 		len++;
 	}
 	tempStr = _strcpy(tempStr, str);
-	printf("str new is: %s", tempStr);
 	token_list = malloc((sizeof(char *) * (numLetters + 1)));
 	
 	if (token_list == NULL)
