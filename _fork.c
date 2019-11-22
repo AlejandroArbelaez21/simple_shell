@@ -9,7 +9,6 @@
 
 int _fork(char **temp_split)
 {
-char **temp_copy = _strcpy(temp_copy, temp_split);
 pid_t pid = fork();
 int status;
 
@@ -20,11 +19,11 @@ int status;
 	}
 	else if (pid == 0)
 	{
-		if (execve(temp_copy[0], temp_copy, NULL) == -1)
+		if (execve(temp_split[0], temp_split, NULL) == -1)
 		{
 			perror("Error");
 		}
-		free(temp_copy);
+		free(temp_split);
 	}
 	else
 	{
