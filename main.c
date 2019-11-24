@@ -20,7 +20,7 @@ void signal_handler (int sig)
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int main(int argc, char **argv, char **envp)
+int main(int argc, char **argv)
 {
 
 int i, flag = 0, tok_indx, token_len, path_len;
@@ -35,63 +35,66 @@ char *buffer = malloc(buff_size);
 	if (buffer == NULL)
 	{
 		perror("Failed to malloc memory");
-		free(buffer);
 		exit(98);
 	}
-	env = _get_env(envp);
+	env = _get_env("PATH");
 	while (printer > 0)
 	{
-		signal(SIGINT, sig_handler);
+		signal(SIGINT, signal_handler);
 		if (isatty(STDIN_FILENO))
 	    	write(STDOUT_FILENO, "($) ", 4);
-
-		write(STDOUT_FILENO, "$ ", 2);
 		printer = getline(&buffer, &buff_size, stdin);
 		if (printer == -1)
-			break;
-		write(STDOUT_FILENO, "$ ", 2);
-		temp_split = split_str(buffer, " ");
-		if (stat(temp_split[0], &cmmd_find) == 0)
-		{
-			flag = 1;
-		}
-		else
-		{
-			catP = split_str(env, ":");
-			path_len = _strlen(temp_split[0]);
-			tok_indx = 0;
-			while (catP[tok_indx])
 			{
-				token_len = _strlen(catP[tok_indx] + 2);
-				catP[tok_indx] = realloc(catP[tok_indx], sizeof(char) * (token_len + path_len));
-				_strcat(catP[tok_indx], "/");
-				_strcat(catP[tok_indx], temp_split[0]);
-				if (stat(catP[tok_indx], &cmmd_find) == 0)
-				{
-					temp_split[0] = realloc(temp_split[0], sizeof(char) * (token_len + path_len));
-					strcpy(temp_split[0], catP[tok_indx]);
-					flag = 1;
-					break;
-				}
-				tok_indx++;
+				if (isatty(STDIN_FILENO))
+					write(STDOUT_FILENO, "\n", 1);
+				break;
 			}
-		}
-		if (flag == 1)
-				_fork(temp_split);
-		_fork(temp_split);
 		if (printer > 1)
-			write(STDOUT_FILENO, buffer, printer);
-	
-		i = 0;
-		while (temp_split[i])
-			i++;
-		while (i >= 0)
 		{
-			free(temp_split[i]);
-			i--;
+			temp_split = split_str(buffer, " ");
+			if (temp_split[0])
+			{
+			if (stat(temp_split[0], &cmmd_find) == 0)
+				flag = 1;
+			else
+			{
+				catP = split_str(env, ":");
+				path_len = _strlen(temp_split[0]);
+				tok_indx = 0;
+				while (catP[tok_indx])
+				{
+					token_len = _strlen(catP[tok_indx]) + 2;
+					catP[tok_indx] = realloc(catP[tok_indx], sizeof(char) * (token_len + path_len));
+					_strcat(catP[tok_indx], "/");
+					_strcat(catP[tok_indx], temp_split[0]);
+					if (stat(catP[tok_indx], &cmmd_find) == 0)
+					{
+						temp_split[0] = realloc(temp_split[0], sizeof(char) * (token_len + path_len));
+						_strcpy(temp_split[0], catP[tok_indx]);
+						flag = 1;
+						break;
+					}
+					tok_indx++;
+				}
+			}
+			if (flag == 1)
+					_fork(temp_split);
+			else
+				perror("./hsh");
+			i = 0;
+			while (temp_split[i])
+				i++;
+			while (i >= 0)
+			{
+				free(temp_split[i]);
+				i--;
+			}
+			free(temp_split);
 		}
-		free(temp_split);
 	}
+	flag = 0;
 	free(buffer);
-return (0);
+	return (0);
 }
+

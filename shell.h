@@ -7,12 +7,14 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
+#include <signal.h>
 
-extern char **envp;
+extern char **environ;
 
 char **split_str(char *str, const char *delim);
 int _fork(char **temp_split);
-char *_get_env(char **envp);
+char *_get_env(char *name);
+void signal_handler (int sig);
 
 /*helpers*/
 size_t _strlen(const char *str);

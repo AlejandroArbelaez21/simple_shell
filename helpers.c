@@ -42,8 +42,7 @@ char *_strcat(char *dest, char *src)
 	int i, j;
 
 	for (i = 0; dest[i] != '\0'; i++)
-	{
-	}
+		;
 	j = 0;
 	while (src[j] != '\0')
 	{
@@ -67,69 +66,69 @@ char *_strcat(char *dest, char *src)
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-char *a;
-int x, i;
-if (new_size > old_size)
+	char *a;
+	int x, i;
+	if (new_size > old_size)
 	{
-	x = old_size;
+		x = old_size;
 	}
-else
+	else
 	{
-	x = new_size;
+		x = new_size;
 	}
-if (new_size == old_size)
+	if (new_size == old_size)
 	{
-return (ptr);
+		return (ptr);
 	}
-if (new_size == 0 && ptr != NULL)
+	if (new_size == 0 && ptr != NULL)
 	{
-	free(ptr);
-	return (NULL);
+		free(ptr);
+		return (NULL);
 	}
-a = NULL;
-a = malloc(new_size);
+	a = NULL;
+	a = malloc(new_size);
 	if (a == NULL)
 	{
-	return (NULL);
+		return (NULL);
 	}
 	if (ptr == NULL)
 	{
-	return (a);
+		return (a);
 	}
-for (i = 0; i < x; i++)
+	for (i = 0; i < x; i++)
 	{
-	a[i] = ((char *) ptr)[i];
+		a[i] = ((char *) ptr)[i];
 	}
-free(ptr);
-return (a);
+	free(ptr);
+	return (a);
 }
 
 /**
- * _strncmp - writes the character c to stdout
- * @s1: The character to print
- * @s2: The character to print
- * @n: The n bytes to compare
+ * _strncmp - function that that compares n chars of two strings
+ * @s1: first value to compare
+ * @s2: second value to compare
+ * @n: number of chars to compare
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: 0 if are equal, else other number 
  */
 int _strncmp(char *s1, char *s2, int n)
 {
-int a = 0;
-int b = 0;
-
-while ((s1[a] <= n && s2[b] <= n) && s1[a] == s2[b])
-{
-a++;
-b++;
-}
-
-if (s1 == s2)
+	int i = 0, j = 0, k, m = 0;
+	while (s1[i] != 0)
 	{
-	return (0);
+		i++;
 	}
-else
+	while (s2[j] != 0)
 	{
-	return (s1[a] - s2[b]);
+		j++;
 	}
+	for (k = 0; k < n; k++)
+	{
+		if (s1[k] != s2[k])
+		{
+			m = (s1[k] - '0') - (s2[k] - '0');
+			break;
+		}
+	}
+	return (m);
 }

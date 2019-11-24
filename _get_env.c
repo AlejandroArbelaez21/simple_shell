@@ -6,15 +6,16 @@
 *Return: env
 */
 
-char *_get_env(char **envp)
+char *_get_env(char *name)
 {
 	int i = 0;
 	char *env;
 
-	while (envp[i])
+	while (environ[i])
 	{
-		if (!(_strncmp("PATH", envp[i], 4)))
-			env = envp[i] + 5;
+		if (!(_strncmp(name, environ[i], 4)))
+			env = environ[i] + 5;
+			
 		i++;
 	}
 	return (env);

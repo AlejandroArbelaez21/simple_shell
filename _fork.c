@@ -19,11 +19,12 @@ int status;
 	}
 	else if (pid == 0)
 	{
-		if (execve(temp_split[0], temp_split, NULL) == -1)
+		if (execve(temp_split[0], temp_split, NULL) < 0)
 		{
 			perror("Error");
 		}
-
+		free(temp_split);
+		exit(127);
 	}
 	else
 	{
