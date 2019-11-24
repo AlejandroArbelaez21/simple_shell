@@ -9,7 +9,6 @@ int main(void)
 	int i;
 	size_t buff_size = 10;
 	ssize_t printer = 1;
-	pid_t pid;
 	char **temp_split = NULL;
 	char *buffer = malloc(buff_size);
 
@@ -28,7 +27,7 @@ int main(void)
 		printf("%s", buffer);
 		temp_split = split_str(buffer, " ");
 		
-		pid = _fork(temp_split);
+		_fork(temp_split);
 		i = 0;
 		while (temp_split[i])
 			i++;

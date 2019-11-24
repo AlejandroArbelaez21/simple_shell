@@ -21,4 +21,5 @@ char *_strcat(char *s1, char *s2);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 int _strncmp(char *s1, char *s2, int n);
 
+
 #endif

@@ -5,6 +5,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 char **split_str(char *str, const char *delim);
  int _fork(char **temp_split);
 

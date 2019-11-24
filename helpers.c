@@ -37,41 +37,23 @@ char *_strcpy(char *dest, char *src)
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-char *_strcat(char *s1, char *s2)
+char *_strcat(char *dest, char *src)
 {
-unsigned int a, b, x, y;
-char *c;
-	if (s1 == '\0')
-		{
-		s1 = "";
-		}
-	if (s2 == '\0')
-		{
-		s2 = "";
-		}
-for (a = 0; s1[a] != '\0'; a++)
-	{
-	}
-for (b = 0; s2[b] != '\0'; b++)
-	{
-	}
-c = NULL;
-c = malloc((a + b + 1) * sizeof(char));
-	if (c == NULL)
-		{
-		return (NULL);
-		}
-for (x = 0; s1[x] != '\0'; x++)
-	{
-	c[x] = s1[x];
-	}
-for (y = 0; s2[y] != '\0'; y++)
-	{
-	c[x + y] = s2[y];
-	}
-	c[a + b] = '\0';
+	int i, j;
 
-return (c);
+	for (i = 0; dest[i] != '\0'; i++)
+	{
+	}
+	j = 0;
+	while (src[j] != '\0')
+	{
+		dest[i] = src[j];
+		j++;
+		i++;
+	}
+	/*i++;*/
+	dest[i] = '\0';
+	return (dest);
 }
 
 /**

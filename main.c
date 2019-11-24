@@ -1,4 +1,17 @@
 #include "shell.h"
+
+
+/**
+ * signal_handler - action for SIGINT change
+ * @sig: value for SIGINT
+ *
+ */
+
+void signal_handler (int sig)
+{
+	if (sig == SIGINT)
+	write(STDOUT_FILENO, "\n($) ", 5);
+}
 /**
  * main - void
  *@argc: arg count
@@ -28,6 +41,10 @@ char *buffer = malloc(buff_size);
 	env = _get_env(envp);
 	while (printer > 0)
 	{
+		signal(SIGINT, sig_handler);
+		if (isatty(STDIN_FILENO))
+	    	write(STDOUT_FILENO, "($) ", 4);
+
 		write(STDOUT_FILENO, "$ ", 2);
 		printer = getline(&buffer, &buff_size, stdin);
 		if (printer == -1)
@@ -64,6 +81,7 @@ char *buffer = malloc(buff_size);
 		_fork(temp_split);
 		if (printer > 1)
 			write(STDOUT_FILENO, buffer, printer);
+	
 		i = 0;
 		while (temp_split[i])
 			i++;

@@ -12,7 +12,7 @@ char **split_str(char *str, const char *delim)
 	char *tempStr = NULL;
 	char *token = NULL;
 
-	tempStr = malloc(sizeof(str));
+	tempStr = malloc(sizeof(char *) + strlen(str));
 	if (tempStr == NULL)
 	{
 		perror ("Error");
