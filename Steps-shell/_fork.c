@@ -15,7 +15,7 @@
     }
 	else if (pid == 0)
 	{
-		if (execve(temp_split[0], temp_split, NULL) == -1)
+		if (execve(temp_split[0], temp_split, environ) == -1)
 			perror("");
 		_exit(EXIT_SUCCESS);		
 	}
