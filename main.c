@@ -92,6 +92,15 @@ char **temp_split = NULL, *env, *buffer = malloc(buff_size);
 	return (0);
 }
 
+/**
+ * path_cheker - void
+ *@temp_split: arg count
+ *@env: array of parameters
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+
 int path_cheker(char **temp_split, char *env)
 {
 	char **catP;
