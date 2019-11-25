@@ -5,7 +5,7 @@
  * Return: number of words
  */
 
-int words_count(char *s)
+size_t words_count(char *s)
 {
 	int i;
 	int count = 0;
@@ -66,4 +66,18 @@ int _strcmp(char *s1, char *s2)
 		}
 	}
 	return (m);
+}
+/**
+ * myfree - frees a string of strings
+ * @pp: string of strings
+ */
+void myfree(char **pp)
+{
+	char **a = pp;
+
+	if (!pp)
+		return;
+	while (*pp)
+		free(*pp++);
+	free(a);
 }

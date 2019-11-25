@@ -43,7 +43,7 @@ char **split_str(char *str, const char *delim)
 		{
 			for(new = i; new >= 0; new--)
 				free(token_list[i]);
-			free(token_list);
+			myfree(token_list);
 		}
 		_strcpy(token_list[i],token);
 		i++;

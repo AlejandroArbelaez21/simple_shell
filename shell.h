@@ -15,6 +15,7 @@ char **split_str(char *str, const char *delim);
 int _fork(char **temp_split);
 char *_get_env(char *name);
 void signal_handler (int sig);
+int path_cheker(char **temp_split, char *env);
 
 
 /*helpers*/
@@ -24,8 +25,9 @@ char *_strcat(char *s1, char *s2);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 int _strncmp(char *s1, char *s2, int n);
 int _strcmp(char *s1, char *s2);
-int words_count(char *s);
+size_t words_count(char *s);
 void print_env(char **envp);
+void myfree(char **pp);
 
 
 #endif
