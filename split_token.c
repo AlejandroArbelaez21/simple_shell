@@ -7,7 +7,7 @@
 */
 char **split_str(char *str, const char *delim)
 {
-	int len = 0, numLetters = 0, i =0, new;
+	int len = 0, numLetters = 0, i =0;
 	char **token_list = NULL;
 	char *tempStr = NULL;
 	char *token = NULL;
@@ -40,11 +40,8 @@ char **split_str(char *str, const char *delim)
 	{
 		token_list[i] = malloc(sizeof(char) * ((_strlen(token)) + 1));
 		if (token_list[i] == NULL)
-		{
-			for(new = i; new >= 0; new--)
-				free(token_list[i]);
 			myfree(token_list);
-		}
+			
 		_strcpy(token_list[i],token);
 		i++;
 		token = strtok(NULL, delim);

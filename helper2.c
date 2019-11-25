@@ -81,3 +81,37 @@ void myfree(char **pp)
 		free(*pp++);
 	free(a);
 }
+
+/**
+*path_cheker - function to check the path of the commd
+*@temp_split: array 2d of tokens
+*@env: env var
+Return: flag
+*/
+int path_cheker(char **temp_split, char *env)
+{
+	char **catP;
+	int path_len, token_len, tok_indx, flag = 0;
+	struct stat cmmd_find;
+	
+	catP = split_str(env, ":");
+	path_len = _strlen(temp_split[0]);
+	tok_indx = 0;
+	while (catP[tok_indx])
+	{
+		token_len = _strlen(catP[tok_indx]) + 2;
+		catP[tok_indx] = realloc(catP[tok_indx], sizeof(char) * (token_len + path_len));
+		_strcat(catP[tok_indx], "/");
+		_strcat(catP[tok_indx], temp_split[0]);
+		if (stat(catP[tok_indx], &cmmd_find) == 0)
+		{
+			temp_split[0] = realloc(temp_split[0], sizeof(char) * (token_len + path_len));
+			_strcpy(temp_split[0], catP[tok_indx]);
+			flag = 1;
+			break;
+		}
+		tok_indx++;
+	}
+	myfree(catP);
+	return (flag);
+}
