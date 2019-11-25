@@ -29,7 +29,7 @@ char **split_str(char *str, const char *delim)
 	}
 	tempStr = _strcpy(tempStr, str);
 	token_list = malloc((sizeof(char *) * (numLetters + 1)));
-	
+
 	if (token_list == NULL)
 	{
 		perror ("Error");
