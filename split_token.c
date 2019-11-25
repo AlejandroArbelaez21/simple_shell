@@ -38,7 +38,7 @@ char **split_str(char *str, const char *delim)
 	token = strtok(tempStr, delim);
 	while (token)
 	{
-		token_list[i] = malloc(sizeof(char) * (strlen(token) + 1));
+		token_list[i] = malloc(sizeof(char) * ((_strlen(token)) + 1));
 		if (token_list[i] == NULL)
 		{
 			for(new = i; new >= 0; new--)
