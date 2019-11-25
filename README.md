@@ -81,7 +81,7 @@ hsh main.c shell.c test_ls_2
 $
 ```
 
-## DATE AND VERSION
+## Date and version
 
 28 November of 2019, version of shell 1.0
 
