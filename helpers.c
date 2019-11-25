@@ -30,7 +30,7 @@ char *_strcpy(char *dest, char *src)
 }
 
 /**
- * *str_concat - writes the character n to stdout
+ * *str_strcat - writes the character n to stdout
  * @s1: Size character to print
  * @s2: Size character to print
  *

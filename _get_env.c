@@ -15,7 +15,7 @@ char *_get_env(char *name)
 	{
 		if (!(_strncmp(name, environ[i], 4)))
 			env = environ[i] + 5;
-			
+
 		i++;
 	}
 	return (env);
