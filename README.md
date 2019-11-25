@@ -22,11 +22,11 @@ commands read from the standard input or from a file.
 |            Function                   |              Description              |
 | ------------------------------------- | ------------------------------------- |
 | extern char **environ;                | The function that prints              |
-| char **split_str(char *str, const char *delim); |             |
+| char **split_str(char *str, const char *delim); | The function split the string in token |
 | int _fork(char **temp_split);         | Function for creates a child proccess |
 | char *_get_env(char *name);           | Function to get the path env          |
 | void signal_handler (int sig);        | Action for SIGINT change              |
-| int path_cheker(char **temp_split, char *env); |          |
+| int path_cheker(char **temp_split, char *env); | check the stdin in the PATH  |
 | size_t _strlen(const char *str);      | Function that count the long of string |
 | char *_strcpy(char *dest, char *src); | Function that copy a string in another |
 | char *_strcat(char *s1, char *s2);    | Function that concatenate a string     |
@@ -50,7 +50,7 @@ It was compiled with `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
 ## How execute the program
 
 After compilation, we get the executable file, the only thing we have to do is execute the file obtained in this way
-`$ ./hsh`
+`simple_shell$ ./hsh`
 
 ## Example
 
@@ -80,6 +80,11 @@ hsh main.c shell.c test_ls_2
 hsh main.c shell.c test_ls_2
 $
 ```
+
+## DATE AND VERSION
+
+28 November of 2019, version of shell 1.0
+
 ## Authors
 
-Alejandro Arbelaez Giraldo and Juan Sebastian Ocampo Hoyos from [Holberton School](https://www.holbertonschool.com/).
+[Alejandro Arbelaez Giraldo](https://github.com/AlejandroArbelaez21) and [Juan Sebastian Ocampo Hoyos](https://github.com/darkares23) from [Holberton School](https://www.holbertonschool.com/). :+1:
