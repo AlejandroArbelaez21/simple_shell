@@ -42,7 +42,7 @@ char **temp_split = NULL, *env, *buffer = NULL;
 		}
 		if (printer > 1)
 		{
-			temp_split = split_str(buffer, " ");
+			temp_split = split_str(buffer, " \t");
 			if (!(_strcmp(temp_split[0], "exit")))
 			{
 				myfree(temp_split);
