@@ -17,6 +17,8 @@ int _fork(char **temp_split);
 char *_get_env(char *name);
 void signal_handler (int sig);
 int path_cheker(char **temp_split, char *env);
+void builtsfun(char  *buffer, char **envir);
+int myexit(char **temp_split, char *buffer);
 
 /*helpers*/
 size_t _strlen(const char *str);
@@ -28,5 +30,6 @@ int _strcmp(char *s1, char *s2);
 size_t words_count(char *s);
 void print_env(char **envp);
 void myfree(char **pp);
+int _atoi(char *s);
 
 #endif

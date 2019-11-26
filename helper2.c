@@ -95,6 +95,7 @@ int path_cheker(char **temp_split, char *env)
 {
 	char **catP;
 	int path_len, tok_len, tok_ind, flag = 0;
+	unsigned int oldize, newize;
 	struct stat cmmd_find;
 
 	catP = split_str(env, ":");
@@ -103,12 +104,14 @@ int path_cheker(char **temp_split, char *env)
 	while (catP[tok_ind])
 	{
 		tok_len = _strlen(catP[tok_ind]) + 2;
-		catP[tok_ind] = realloc(catP[tok_ind], sizeof(char) * (tok_len + path_len));
+		oldize = _strlen(catP[tok_ind]) + 1; 
+		newize = sizeof(char) * (tok_len + path_len);
+		catP[tok_ind] = _realloc(catP[tok_ind], oldize, newize);
 		_strcat(catP[tok_ind], "/");
 		_strcat(catP[tok_ind], temp_split[0]);
 		if (stat(catP[tok_ind], &cmmd_find) == 0)
 		{
-			temp_split[0] = realloc(temp_split[0], sizeof(char) * (tok_len + path_len));
+			temp_split[0] = _realloc(temp_split[0], (path_len + 1), newize);
 			_strcpy(temp_split[0], catP[tok_ind]);
 			flag = 1;
 			break;
