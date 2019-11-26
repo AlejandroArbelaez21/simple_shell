@@ -30,9 +30,9 @@ char *_strcpy(char *dest, char *src)
 }
 
 /**
- * *str_strcat - writes the character n to stdout
- * @s1: Size character to print
- * @s2: Size character to print
+ * _strcat - writes the character n to stdout
+ * @dest: Size character to print
+ * @src: Size character to print
  *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
@@ -68,6 +68,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	char *a;
 	int x, i;
+
 	if (new_size > old_size)
 	{
 		x = old_size;
@@ -109,11 +110,12 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
  * @s2: second value to compare
  * @n: number of chars to compare
  *
- * Return: 0 if are equal, else other number 
+ * Return: 0 if are equal, else other number
  */
 int _strncmp(char *s1, char *s2, int n)
 {
 	int i = 0, j = 0, k, m = 0;
+
 	while (s1[i] != 0)
 	{
 		i++;

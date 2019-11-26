@@ -1,5 +1,6 @@
 #ifndef SHELL_H
 #define SHELL_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -17,7 +18,6 @@ char *_get_env(char *name);
 void signal_handler (int sig);
 int path_cheker(char **temp_split, char *env);
 
-
 /*helpers*/
 size_t _strlen(const char *str);
 char *_strcpy(char *dest, char *src);
@@ -28,6 +28,5 @@ int _strcmp(char *s1, char *s2);
 size_t words_count(char *s);
 void print_env(char **envp);
 void myfree(char **pp);
-
 
 #endif

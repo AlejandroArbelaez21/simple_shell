@@ -2,7 +2,7 @@
 
 /**
 *_get_env - function to get the path env
-*@envp: pointer to env
+*@name: pointer to env
 *Return: env
 */
 

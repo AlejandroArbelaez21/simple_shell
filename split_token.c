@@ -4,10 +4,10 @@
  *@str: edited variable
  *@delim: edited variable
  *Return: always 0
-*/
+ */
 char **split_str(char *str, const char *delim)
 {
-	int len = 0, numLetters = 0, i =0;
+	int len = 0, numLetters = 0, i = 0;
 	char **token_list = NULL;
 	char *tempStr = NULL;
 	char *token = NULL;
@@ -15,7 +15,7 @@ char **split_str(char *str, const char *delim)
 	tempStr = malloc(sizeof(char *) + strlen(str));
 	if (tempStr == NULL)
 	{
-		perror ("Error");
+		perror("Error");
 		free(tempStr);
 	}
 	/*letters count*/
@@ -29,10 +29,9 @@ char **split_str(char *str, const char *delim)
 	}
 	tempStr = _strcpy(tempStr, str);
 	token_list = malloc((sizeof(char *) * (numLetters + 1)));
-
 	if (token_list == NULL)
 	{
-		perror ("Error");
+		perror("Error");
 		free(token_list);
 	}
 	token = strtok(tempStr, delim);
@@ -41,8 +40,7 @@ char **split_str(char *str, const char *delim)
 		token_list[i] = malloc(sizeof(char) * ((_strlen(token)) + 1));
 		if (token_list[i] == NULL)
 			myfree(token_list);
-			
-		_strcpy(token_list[i],token);
+		_strcpy(token_list[i], token);
 		i++;
 		token = strtok(NULL, delim);
 	}

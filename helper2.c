@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * word_count - counts words because split_line is bad at arithmetic
+ * words_count - counts words because split_line is bad at arithmetic
  * @s: string to count
  * Return: number of words
  */
@@ -31,6 +31,7 @@ size_t words_count(char *s)
 void print_env(char **envp)
 {
 	int i = 0;
+
 	while (envp[i])
 	{
 		write(STDOUT_FILENO, envp[i], _strlen(envp[i]));
@@ -39,16 +40,16 @@ void print_env(char **envp)
 	}
 }
 /**
- * _strncmp - function that that compares n chars of two strings
+ * _strcmp - function that that compares n chars of two strings
  * @s1: first value to compare
  * @s2: second value to compare
- * @n: number of chars to compare
  *
- * Return: 0 if are equal, else other number 
+ * Return: 0 if are equal, else other number
  */
 int _strcmp(char *s1, char *s2)
 {
 	int i = 0, j = 0, k, m = 0;
+
 	while (s1[i] != 0)
 	{
 		i++;
@@ -70,6 +71,8 @@ int _strcmp(char *s1, char *s2)
 /**
  * myfree - frees a string of strings
  * @pp: string of strings
+ *
+ * Return: 0 exit success
  */
 void myfree(char **pp)
 {
@@ -86,31 +89,31 @@ void myfree(char **pp)
 *path_cheker - function to check the path of the commd
 *@temp_split: array 2d of tokens
 *@env: env var
-Return: flag
+*Return: flag
 */
 int path_cheker(char **temp_split, char *env)
 {
 	char **catP;
-	int path_len, token_len, tok_indx, flag = 0;
+	int path_len, tok_len, tok_ind, flag = 0;
 	struct stat cmmd_find;
-	
+
 	catP = split_str(env, ":");
 	path_len = _strlen(temp_split[0]);
-	tok_indx = 0;
-	while (catP[tok_indx])
+	tok_ind = 0;
+	while (catP[tok_ind])
 	{
-		token_len = _strlen(catP[tok_indx]) + 2;
-		catP[tok_indx] = realloc(catP[tok_indx], sizeof(char) * (token_len + path_len));
-		_strcat(catP[tok_indx], "/");
-		_strcat(catP[tok_indx], temp_split[0]);
-		if (stat(catP[tok_indx], &cmmd_find) == 0)
+		tok_len = _strlen(catP[tok_ind]) + 2;
+		catP[tok_ind] = realloc(catP[tok_ind], sizeof(char) * (tok_len + path_len));
+		_strcat(catP[tok_ind], "/");
+		_strcat(catP[tok_ind], temp_split[0]);
+		if (stat(catP[tok_ind], &cmmd_find) == 0)
 		{
-			temp_split[0] = realloc(temp_split[0], sizeof(char) * (token_len + path_len));
-			_strcpy(temp_split[0], catP[tok_indx]);
+			temp_split[0] = realloc(temp_split[0], sizeof(char) * (tok_len + path_len));
+			_strcpy(temp_split[0], catP[tok_ind]);
 			flag = 1;
 			break;
 		}
-		tok_indx++;
+		tok_ind++;
 	}
 	myfree(catP);
 	return (flag);

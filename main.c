@@ -19,14 +19,10 @@ void signal_handler (int sig)
  */
 int main(int argc, char **argv)
 {
-int flag = 0;
-size_t buff_size = 10;
-ssize_t printer = 1;
-struct stat cmmd_find;
-char **temp_split = NULL, *env, *buffer = NULL;
+int flag = 0, size_t buff_size = 10, ssize_t printer = 1;
+struct stat cmmd_find, char **temp_split = NULL, *env, *buffer = NULL;
 
-(void)argc, (void)argv;
-	env = _get_env("PATH");
+(void)argc, (void)argv, env = _get_env("PATH");
 	while (printer > 0)
 	{
 		signal(SIGINT, signal_handler);
@@ -37,8 +33,7 @@ char **temp_split = NULL, *env, *buffer = NULL;
 		{
 			if (isatty(STDIN_FILENO))
 				write(STDOUT_FILENO, "\n", 1);
-			free(buffer);
-			exit(EXIT_SUCCESS);
+			free(buffer), exit(EXIT_SUCCESS);
 		}
 		if (printer > 1)
 		{
@@ -46,8 +41,7 @@ char **temp_split = NULL, *env, *buffer = NULL;
 			if (!(_strcmp(temp_split[0], "exit")))
 			{
 				myfree(temp_split);
-				free(buffer);
-				_exit(EXIT_SUCCESS);
+				free(buffer), _exit(EXIT_SUCCESS);
 			}
 			else if (temp_split[0] == NULL)
 				perror("./hsh");
@@ -60,11 +54,9 @@ char **temp_split = NULL, *env, *buffer = NULL;
 			if (flag == 1)
 				_fork(temp_split);
 			else
-				perror("./hsh");
-			myfree(temp_split);
+				perror("./hsh"), myfree(temp_split);
 		}
 		flag = 0;
 	}
-	free(buffer);
-	return (0);
+	free(buffer), return (0);
 }

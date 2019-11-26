@@ -2,7 +2,7 @@
 
 ## Description
 
-In this project we will create our own shell, that is an sh-compatible command language interpreter that executes 
+In this project we will create our own shell, that is an sh-compatible command language interpreter that executes
 commands read from the standard input or from a file.
 
 ## File contents
