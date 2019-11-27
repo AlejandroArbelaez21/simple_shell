@@ -104,7 +104,7 @@ int path_cheker(char **temp_split, char *env)
 	while (catP[tok_ind])
 	{
 		tok_len = _strlen(catP[tok_ind]) + 2;
-		oldize = _strlen(catP[tok_ind]) + 1; 
+		oldize = _strlen(catP[tok_ind]) + 1;
 		newize = sizeof(char) * (tok_len + path_len);
 		catP[tok_ind] = _realloc(catP[tok_ind], oldize, newize);
 		_strcat(catP[tok_ind], "/");

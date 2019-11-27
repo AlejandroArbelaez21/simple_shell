@@ -3,10 +3,13 @@
  * myexit - exit handle errors
  * @temp_split: 2d array with the promt splited
  * @buffer: promt str
-*/
+ *
+ * Return: int in exit success.
+ */
 int myexit(char **temp_split, char *buffer)
 {
 	int arg_exit = 0, len_exit = 0, flag = 0;
+
 	if (temp_split[1] == NULL || (!_strcmp(temp_split[1], "0")))
 	{
 		myfree(temp_split);
