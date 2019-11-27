@@ -21,8 +21,8 @@ int main(int argc, char **argv)
 {
 size_t buff_size = 10;
 ssize_t printer = 1;
-
 char *buffer = NULL;
+int cont = 0;
 
 (void)argc, (void)argv;
 
@@ -32,6 +32,7 @@ char *buffer = NULL;
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "($) ", 4);
 		printer = getline(&buffer, &buff_size, stdin);
+		cont = words_count(buffer);
 		if (printer < 0)
 		{
 			if (isatty(STDIN_FILENO))
@@ -39,7 +40,7 @@ char *buffer = NULL;
 			free(buffer);
 			exit(EXIT_SUCCESS);
 		}
-		if (printer > 1)
+		if (cont > 0)
 		{
 			builtsfun(buffer, environ);
 		}

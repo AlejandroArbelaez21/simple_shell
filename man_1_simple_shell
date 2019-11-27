@@ -1,17 +1,68 @@
 .TH HSH 1 "2019-11-28" "BSD" "General Commands Manual"
 .SH NAME
-.B hsh	
--- command interpreter (shell)
+.B hsh
+-- the standard command language interpreter (shell)
 .SH SYNOPSIS
-     sh	[-/+abCEefhIimnPpTuVvx]	[-/+o longname]	[script	[arg ...]]
-     sh	[-/+abCEefhIimnPpTuVvx]	[-/+o longname]	-c string [name	[arg ...]]
-     sh	[-/+abCEefhIimnPpTuVvx]	[-/+o longname]	-s [arg	...]
+.B sh
+[options] [file]
 .SH DESCRIPTION
-     The sh utility is the standard command interpreter	for the	system.	 The
-     current version of	sh is close to the IEEE	Std 1003.1 ("POSIX.1") speci-
-     fication for the shell.  It only supports features	designated by POSIX,
-     plus a few	Berkeley extensions.  This man page is not intended to be a
-     tutorial nor a complete specification of the shell.
+The sh utility is a command language interpreter that shall execute commands read from a command line string, the
+standard input, or a specified file. The application shall ensure that the commands to be executed are expressed in
+the language described in
+.I Shell Command Language.
+Pathname expansion shall not fail due to the size of a file.
+Shell input and output redirections have an implementation-defined offset maximum that is established in the open
+file description.
+.SH OPTIONS
+.SH EXIT STATUS
+The following exit values shall be returned:
+
+0	The script to be executed consisted solely of zero or more blank lines or comments, or both.
+
+1-125	A non-interactive shell detected an error other than command_file not found, including but not limited to syntax, redirection, or variable assignment errors.
+
+127	A specified command_file could not be found by a non-interactive shell.
+
+.SH EXAMPLES
+.I interactive mode:
+
+.B $ ./hsh
+
+.B($) /bin/ls
+
+.B hsh main.c shell.c
+
+.B ($)
+
+.B ($) exit
+
+.B $
+
+
+.I non-interactive mode:
+
+.B $ echo "/bin/ls" | ./hsh
+
+.B hsh main.c shell.c test_ls_2
+
+.B $
+
+.B $ cat test_ls_2
+
+.B /bin/ls
+
+.B /bin/ls
+
+.B $
+
+.B $ cat test_ls_2 | ./hsh
+
+.B hsh main.c shell.c test_ls_2
+
+.B hsh main.c shell.c test_ls_2
+
+.B $
+
 .SH AUTHORS
 This version of sh was originally written by Alejandro Arbelaez Giraldo and Juan Sebastian Ocampo Hoyos from Holberton School.
-	
+

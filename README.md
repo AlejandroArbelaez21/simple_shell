@@ -14,7 +14,10 @@ commands read from the standard input or from a file.
 | helper2.c                             | This is other file that has the helps for our project |
 | _fork.c                               | The file has the function fork that creates proccess child |
 | main.c                                | This file calls all our main functions |
-| split_token.c                         | This file content the                 |
+| split_token.c                         | This file content the syscalls of the all functions |
+| 100-atoi.c                            | Contains the function that converts a string to its integer value |
+| buit.c                                | Contains the function for builts      |
+| myexit.c                              | Contains the exit handle errors       |
 | shell.h                               | Library file                          |
 
 ## Function descriptions
@@ -36,6 +39,9 @@ commands read from the standard input or from a file.
 | size_t words_count(char *s);          | Counts words because split_line is bad at arithmetic |
 | void print_env(char **envp);          | Function for found the PATH |
 | void myfree(char **pp);               | Frees a string of strings              |
+| int _atoi(char *s)                    | convert a string to its numeric value |
+| void builtsfun(char  *buffer, char **envir) | function for builts             |
+| int myexit(char **temp_split, char *buffer) | function for exit handle errors program |
 
 ## How install the program
 
