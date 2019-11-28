@@ -28,7 +28,7 @@ commands read from the standard input or from a file.
 | extern char **environ;                | The function that prints              |
 | char **split_str(char *str, const char *delim); | The function split the string in token |
 | int _fork(char **temp_split);         | Function for creates a child proccess |
-| int *_get_env(char *name);            | Function to get the path env          |
+| char *_get_env(char *name);            | Function to get the path env          |
 | void signal_handler (int sig);        | Action for SIGINT change              |
 | int path_cheker(char **temp_split, char *env); | check the stdin in the PATH  |
 | size_t _strlen(const char *str);      | Function that count the long of string |

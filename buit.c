@@ -21,11 +21,11 @@ void builtsfun(char  *buffer, char **envir)
 		print_env(envir);
 	if (stat(temp_split[0], &cmmd_find) == 0)
 		flag = 1;
-	else
+	else if (_strcmp(temp_split[0], "env") != 0)
 		flag = path_cheker(temp_split, env);
-	if (flag == 1)
+	if (flag == 1 && _strcmp(temp_split[0], "env") != 0)
 		_fork(temp_split);
-	else
+	else if (_strcmp(temp_split[0], "env") != 0)
 		perror("./hsh");
 	myfree(temp_split);
 }

@@ -30,12 +30,20 @@ size_t words_count(char *s)
  */
 void print_env(char **envp)
 {
-	int i = 0;
+	int i = 0, x;
 
 	while (envp[i])
 	{
-		write(STDOUT_FILENO, envp[i], _strlen(envp[i]));
-		write(STDOUT_FILENO, "\n", 1);
+		x = 0;
+		while (envp[i][x])
+			{
+			_putchar(envp[i][x]);
+			x++;
+			}
+		if (x != 0)
+			{
+			_putchar('\n');
+			}
 		i++;
 	}
 }
