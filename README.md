@@ -18,6 +18,7 @@ commands read from the standard input or from a file.
 | 100-atoi.c                            | Contains the function that converts a string to its integer value |
 | buit.c                                | Contains the function for builts      |
 | myexit.c                              | Contains the exit handle errors       |
+| _putchar.c                            | function for printing one character   |
 | shell.h                               | Library file                          |
 
 ## Function descriptions
@@ -27,7 +28,7 @@ commands read from the standard input or from a file.
 | extern char **environ;                | The function that prints              |
 | char **split_str(char *str, const char *delim); | The function split the string in token |
 | int _fork(char **temp_split);         | Function for creates a child proccess |
-| char *_get_env(char *name);           | Function to get the path env          |
+| int *_get_env(char *name);            | Function to get the path env          |
 | void signal_handler (int sig);        | Action for SIGINT change              |
 | int path_cheker(char **temp_split, char *env); | check the stdin in the PATH  |
 | size_t _strlen(const char *str);      | Function that count the long of string |
@@ -42,6 +43,7 @@ commands read from the standard input or from a file.
 | int _atoi(char *s)                    | convert a string to its numeric value |
 | void builtsfun(char  *buffer, char **envir) | function for builts             |
 | int myexit(char **temp_split, char *buffer) | function for exit handle errors program |
+| int _putchar(char c);                 | Writes the character c to stdout      |
 
 ## How install the program
 

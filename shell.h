@@ -31,5 +31,6 @@ size_t words_count(char *s);
 void print_env(char **envp);
 void myfree(char **pp);
 int _atoi(char *s);
+int _putchar(char c);
 
 #endif

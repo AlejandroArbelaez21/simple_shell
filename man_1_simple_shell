@@ -1,6 +1,6 @@
-.TH HSH 1 "2019-11-28" "BSD" "General Commands Manual"
+.TH SH 1 "2019-11-28" "Linux" "Programmer's Manual"
 .SH NAME
-.B hsh
+.B Sh
 -- the standard command language interpreter (shell)
 .SH SYNOPSIS
 .B sh
@@ -13,15 +13,36 @@ the language described in
 Pathname expansion shall not fail due to the size of a file.
 Shell input and output redirections have an implementation-defined offset maximum that is established in the open
 file description.
-.SH OPTIONS
+
+.SH INPUT FILES
+The input file shall be a text file, except that line lengths shall be unlimited. If the input file is empty or consists solely of blank lines or comments, or both, sh shall exit with a zero exit status.
+
+.SH ENVIRONMENT VARIABLES
+The following environment variables shall affect the execution of sh:
+
+.B ENV:
+This variable, when and only when an interactive shell is invoked, shall be subjected to parameter expansion by the shell, and the resulting value shall be used as a
+pathname of a file containing shell commands to execute in the current environment.  The file need not be executable. If the expanded value of ENV is not an absolute
+pathname, the results are unspecified.  ENV shall be ignored if the real and effective user IDs or real and effective group IDs of the process are different.
+
+.B PATH:
+Establish a string formatted as described in the Base, Environment variables, used to effect command interpretation, Command Search and Execution.
+
+.B PWD
+This variable shall represent an absolute pathname of the current working directory. Assignments to this variable may be ignored.
+
 .SH EXIT STATUS
-The following exit values shall be returned:
+The exit status of an executed command is the value returned by the waitpid system call or equivalent function. Exit statuses fall between 0 and 255, though, as explained below, the shell may use values above 125 specially. Exit statuses from shell builtins and compound commands are also limited to this range. Under certain circumstances, the shell will use special values to indicate specific failure modes.
 
-0	The script to be executed consisted solely of zero or more blank lines or comments, or both.
+For the shell's purposes, a command which exits with a zero exit status has succeeded. An exit status of zero indicates success. A non-zero exit status indicates failure. When a command terminates on a fatal signal N, sh uses the value of 128+N as the exit status.
 
-1-125	A non-interactive shell detected an error other than command_file not found, including but not limited to syntax, redirection, or variable assignment errors.
+If a command is not found, the child process created to execute it returns a status of 127. If a command is found but is not executable, the return status is 126.
 
-127	A specified command_file could not be found by a non-interactive shell.
+If a command fails because of an error during expansion or redirection, the exit status is greater than zero.
+
+Shell builtin commands return a status of 0 (true) if successful, and non-zero (false) if an error occurs while they execute. All builtins return an exit status of 2 to indicate incorrect usage.
+
+Sh itself returns the exit status of the last command executed, unless a syntax error occurs, in which case it exits with a non-zero value. See also the exit builtin command below.
 
 .SH EXAMPLES
 .I interactive mode:
@@ -62,6 +83,36 @@ The following exit values shall be returned:
 .B hsh main.c shell.c test_ls_2
 
 .B $
+
+.SH BUG REPORTS
+
+If you find a bug in sh, you should report it in the following emails:
+
+.B Alejandro Arbelaez Giraldo
+<
+.I 1158@holbertonschool.com
+>
+or
+.B Juan Sebastian Ocampo Hoyos
+<
+.I 1162@holbertonschool.com
+>
+
+.SH BUGS
+
+It's too big and too slow.
+
+There are some subtle differences between bash and traditional versions of sh, mostly because of the POSIX specification.
+
+Aliases are confusing in some uses.
+
+Shell builtin commands and functions are not stoppable/restartable.
+
+Compound commands and command sequences of the form 'a ; b ; c' are not handled gracefully when process suspension is attempted. When a process is stopped, the shell immediately executes the next command in the sequence. It suffices to place the sequence of commands between parentheses to force it into a subshell, which may be stopped as a unit.
+
+Array variables may not (yet) be exported.
+
+There may be only one active coprocess at a time.
 
 .SH AUTHORS
 This version of sh was originally written by Alejandro Arbelaez Giraldo and Juan Sebastian Ocampo Hoyos from Holberton School.
